@@ -89,9 +89,12 @@ class DatabaseManager:
         """
         await self.execute_command(query, announcement_id)
     
-    async def insert_chunk(self, announcement_id: str, file_id: int,
-                          chunk_text: str, chunk_index: int,
-                          embedding: List[float], metadata: Dict[str, Any]):
+    async def insert_chunk(self, announcement_id: str,
+                            file_id: int,
+                            chunk_text: str,
+                            chunk_index: int,
+                            embedding: List[float],
+                            metadata: Dict[str, Any]):
         """청크 및 임베딩 저장"""
         query = """
             INSERT INTO document_chunks
@@ -100,14 +103,21 @@ class DatabaseManager:
             ON CONFLICT (file_id, chunk_index) DO NOTHING
         """
         await self.execute_command(
-            query, announcement_id, file_id, chunk_text, chunk_index,
-            str(embedding), json.dumps(metadata)
+            query,
+            announcement_id,
+            file_id,
+            chunk_text,
+            chunk_index,
+            str(embedding),
+            json.dumps(metadata)
         )
     
-    async def search_chunks(self, query_embedding: List[float], top_k: int = 5,
-                           announcement_id: Optional[str] = None,
-                           category: Optional[str] = None,
-                           region: Optional[str] = None) -> List[Dict[str, Any]]:
+    async def search_chunks(self,
+                            query_embedding: List[float],
+                            top_k: int = 5,
+                            announcement_id: Optional[str] = None,
+                            category: Optional[str] = None,
+                            region: Optional[str] = None) -> List[Dict[str, Any]]:
         """벡터 유사도 검색 (필터 옵션)"""
         embedding_str = str(query_embedding)
         where_clauses = []
@@ -147,10 +157,11 @@ class DatabaseManager:
         results = await self.execute_query(query, *params)
         return [dict(row) for row in results]
 
-    # 들여쓰기 수정됨 (클래스 내부 메서드로 포함)
-    async def hybrid_search(self, query_embedding: List[float], keywords: str,
-                           top_k: int = 5, vector_weight: float = 0.7) -> List[Dict[str, Any]]:
-        """하이브리드 검색 (수정됨: DISTINCT 제거)"""
+    async def hybrid_search(self, query_embedding: List[float],
+                            keywords: str,
+                            top_k: int = 5,
+                            vector_weight: float = 0.7) -> List[Dict[str, Any]]:
+        
         embedding_str = str(query_embedding)
         keyword_weight = 1.0 - vector_weight
         
@@ -184,6 +195,11 @@ class DatabaseManager:
         """
         
         results = await self.execute_query(
-            query, embedding_str, keywords, vector_weight, keyword_weight, top_k
+            query,
+            embedding_str,
+            keywords,
+            vector_weight,
+            keyword_weight,
+            top_k
         )
         return [dict(row) for row in results]
