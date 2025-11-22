@@ -1,43 +1,57 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import Optional
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
-# 현재 파일(config.py)이 위치한 폴더 경로
+# 1. 환경 변수 로드
+load_dotenv()
+
+# 2. 경로 설정
 CURRENT_DIR = Path(__file__).parent
-# 현재 폴더의 상위 폴더
-PROJECT_ROOT = CURRENT_DIR.parent
+PROJECT_ROOT = CURRENT_DIR.parent.parent.parent
+PDF_BASE_PATH = PROJECT_ROOT
 
-class Settings(BaseSettings):
-    """
-    애플리케이션 설정을 관리합니다.
-    기본값이 없는 필드는 .env에 반드시 존재해야 합니다.
-    Pydantic이 자동으로 값을 읽어옵니다.
-    """
-    
-    # 1. R-DB 설정 (필수값 - .env에 없으면 에러 발생)
-    POSTGRES_HOST: str
-    POSTGRES_PORT: int
-    POSTGRES_DB: str
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str
+# 3. DB & API 설정 (기본값 제거, .env 필수)
+HOST = os.getenv('HOST')
+PORT = int(os.getenv('PORT'))
+USER = os.getenv('USER')
+PASSWORD = os.getenv('PASSWORD')
+DATABASE = os.getenv('DATABASE')
 
-    # 2. OpenAI (필수값)
-    OPENAI_API_KEY: str
+# API 키
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+GOV_API_KEY = os.getenv('GOV_API_KEY')
 
-    # 3. 선택값 (Optional)
-    GOV_API_KEY: Optional[str] = None
+# (호환성용) DB 연결 딕셔너리
+DB_CONFIG = {
+    'host': HOST,
+    'port': PORT,
+    'user': USER,
+    'password': PASSWORD,
+    'database': DATABASE
+}
 
-    # Pydantic 설정
-    model_config = SettingsConfigDict(
-        # 1. 프로젝트 루트의 .env
-        # 2. zip_fit 폴더 내의 .env (우선순위 낮음)
-        env_file=[PROJECT_ROOT / ".env", CURRENT_DIR / ".env"],
-        env_file_encoding='utf-8',
-        extra='ignore' 
-    )
 
-# 설정 인스턴스 생성
-settings = Settings()
+# 4. RAG 챗봇 어플리케이션 설정
+# 임베딩 모델
+EMBEDDING_MODEL = 'BAAI/bge-m3'
+EMBEDDING_DIMENSION = 1024
 
-# 로드 확인용
-print(f"Config Loaded: {settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/{settings.POSTGRES_DB}")
+# 청킹 설정
+MIN_CHUNK_SIZE = 100
+OPTIMAL_CHUNK_SIZE = 600
+MAX_CHUNK_SIZE = 1200
+MAX_TABLE_SIZE = 3000
+CHUNK_OVERLAP = 150
+
+# 검색 설정
+DEFAULT_TOP_K = 5
+SIMILARITY_THRESHOLD = 0.6
+
+# OpenAI 모델 설정
+OPENAI_MODEL = 'gpt-4o-mini'
+OPENAI_TEMPERATURE = 0.3
+OPENAI_MAX_TOKENS = 1500
+
+# 처리 설정
+BATCH_SIZE = 10
+MAX_WORKERS = 4

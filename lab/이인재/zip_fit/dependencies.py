@@ -1,21 +1,22 @@
-from .chatting import Chatting
 from typing import Optional
+from rag import RAGEngine
 
-# 전역 변수를 사용하기 위해 인스턴스 변수를 정의합니다.
-_CHAT_SERVICE_INSTANCE: Optional[Chatting] = None
+# 전역 변수로 엔진 인스턴스 저장 (싱글톤 패턴)
+_RAG_ENGINE: Optional[RAGEngine] = None
 
-def set_chatting_service_instance(instance: Chatting):
+def set_rag_engine(instance: RAGEngine):
     """
-    main.py의 lifespan에서 생성된 Chatting 인스턴스를 저장합니다.
+    서버 시작 시(main.py lifespan), 초기화된 RAGEngine을 저장합니다.
     """
-    global _CHAT_SERVICE_INSTANCE
-    _CHAT_SERVICE_INSTANCE = instance
-    print("Dependencies: Chatting 인스턴스가 주입 준비 완료되었습니다.")
+    global _RAG_ENGINE
+    _RAG_ENGINE = instance
+    print("Dependencies: RAGEngine 의존성 주입 준비 완료")
 
-def get_chatting_service() -> Chatting:
+def get_rag_engine() -> RAGEngine:
     """
-    라우터 함수에서 의존성 주입(Depends)을 통해 사용될 함수입니다.
+    Router에서 Depends()를 통해 호출할 함수입니다.
+    초기화된 RAGEngine 인스턴스를 반환합니다.
     """
-    if _CHAT_SERVICE_INSTANCE is None:
-        raise Exception("Chatting Service가 초기화되지 않았습니다. main.py의 lifespan을 확인하세요.")
-    return _CHAT_SERVICE_INSTANCE
+    if _RAG_ENGINE is None:
+        raise RuntimeError("RAGEngine이 초기화되지 않았습니다. main.py 설정을 확인하세요.")
+    return _RAG_ENGINE
