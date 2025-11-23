@@ -1,12 +1,24 @@
-from pydantic import BaseModel
-from typing import Dict, Any
+from pydantic import BaseModel, Field
+from typing import List, Dict, Optional, Any, Union
 
-# Chatting, LlmEngine, Router가 모두 사용할 Pydantic 모델
+class Message(BaseModel):
+    role: str
+    content: str
+
 class ChatRequest(BaseModel):
-    user_input: str
-    user_id: int = 0
+    query: str
+    history: List[Dict[str, Any]] = Field(default_factory=list, description="이전 대화 내역 ({'query':.., 'answer':..})")
+
+class SourceInfo(BaseModel):
+    # [수정됨] int -> str (DB에 'LH_lease_64' 같은 문자열 ID가 들어있기 때문)
+    announcement_id: str 
+    title: str
+    region: str
+    score: float
+    chunk_count: int
 
 class ChatResponse(BaseModel):
-    response: str
-    status: str = "success"
-    processed_by: str = "Chatting Class"
+    query: str
+    answer: str
+    sources: List[SourceInfo]
+    metadata: Optional[Dict[str, Any]] = None

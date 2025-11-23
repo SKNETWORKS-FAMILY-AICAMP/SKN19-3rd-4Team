@@ -1,46 +1,53 @@
+import uvicorn
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
+from router import router
+from dependencies import load_models
+import config
 
-from .chatting import Chatting 
-from . import router
-from .dependencies import set_chatting_service_instance 
-from .llm_engine import LlmEngine
-from .gongo import Gongo 
-
+# 앱 생명주기 관리 (시작과 종료 시점 정의)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # 🏃‍♂️ 1. Gongo 인스턴스 생성 (DB 연결 등 가장 먼저 초기화)
-    gongo_instance = Gongo()
-    # NOTE: 여기에 await gongo_instance.initialize_db_pool() 코드가 들어갑니다.
+    # [시작] 앱 구동 시 실행
+    print("\n" + "="*40)
+    print(f"[System] {config.PROJECT_ROOT} RAG 서버 시작")
+    print(f"Reranker 상태: {'ON' if config.USE_RERANKER else 'OFF'}")
+    print("="*40 + "\n")
     
-    # 🏃‍♂️ 2. LlmEngine 인스턴스를 만들 때 Gongo 인스턴스를 주입!
-    llm_engine_instance = LlmEngine(gongo_service=gongo_instance) 
+    try:
+        # AI 모델 로드 (dependencies.py)
+        load_models()
+    except Exception as e:
+        print(f"[Critical] 모델 로딩 중 오류 발생: {e}")
     
-    # 🏃‍♂️ 3. Chatting 인스턴스를 만들 때 LlmEngine을 주입!
-    chat_instance = Chatting(llm_engine=llm_engine_instance)
+    yield  # 앱 실행 중...
     
-    # 🏃‍♂️ 4. dependencies에 Chatting 인스턴스를 저장
-    set_chatting_service_instance(chat_instance)
-    print("🚀 App Startup: All core services initialized and wired up!")
-    
-    yield # 앱 실행
+    # [종료] 앱 종료 시 실행
+    print("\n[System] 서버 종료 및 리소스 해제")
 
-    # 🛑 종료 시점: 정리 로직
-    # NOTE: 여기에 await gongo_instance.close_db_pool() 코드가 들어갑니다.
-    print("🛑 App Shutdown: Cleaning up.")
-
-
+# FastAPI 앱 인스턴스 생성
 app = FastAPI(
-    title="zip-fit Chatbot API",
+    title="LH Gonggo RAG Chatbot",
+    description="LH 임대/분양 공고 검색을 위한 RAG 챗봇 API",
     version="1.0.0",
-    description="LLM을 활용한 zip-fit 챗봇 API 서비스",
-    lifespan=lifespan 
+    lifespan=lifespan
 )
 
-# 🌟 라우터 등록: main.py의 유일한 역할 중 하나!
-app.include_router(router.router)
+# 라우터 등록 (/api/v1/chat 경로로 접속 가능)
+app.include_router(router, prefix="/api/v1")
 
+# 헬스 체크 엔드포인트
+@app.get("/")
+def health_check():
+    return {
+        "status": "online",
+        "service": "LH RAG Chatbot",
+        "config": {
+            "use_reranker": config.USE_RERANKER,
+            "embedding_model": config.EMBEDDING_MODEL_NAME
+        }
+    }
 
-@app.get("/", tags=["Root"])
-def read_root():
-    return {"message": "zip-fit API Service Running! Check /docs for endpoints."}
+if __name__ == "__main__":
+    # uvicorn.run 명령어 없이 실행 가능
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
