@@ -2123,6 +2123,53 @@ body {
     margin: 1.5em 0;
 }
 
+/* 마크다운 표 스타일 */
+.bubble.left table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    font-size: 0.95em;
+}
+
+.bubble.left table thead {
+    background-color: #f8f9fa;
+}
+
+.bubble.left table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 700;
+    color: #333333;
+    border-bottom: 2px solid #5bb489;
+    border-right: 1px solid #e0e0e0;
+}
+
+.bubble.left table th:last-child {
+    border-right: none;
+}
+
+.bubble.left table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    color: #555555;
+    line-height: 1.6;
+}
+
+.bubble.left table td:last-child {
+    border-right: none;
+}
+
+.bubble.left table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.bubble.left table tbody tr:last-child td {
+    border-bottom: none;
+}
+
 .sources-in-bubble + p:last-child {
     margin-bottom: 0;
 }

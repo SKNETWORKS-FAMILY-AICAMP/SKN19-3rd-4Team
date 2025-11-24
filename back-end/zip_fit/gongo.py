@@ -19,7 +19,7 @@ async def vector_search(query: str, top_k: int = 15, filters: dict = None, filte
         
         where_clauses = []
         params = [str(query_embedding.tolist())]
-        
+
         if filters:
             if filters.get('region') and filters['region'].strip():
                 where_clauses.append(f"a.region LIKE ${len(params)+1}")
@@ -30,6 +30,9 @@ async def vector_search(query: str, top_k: int = 15, filters: dict = None, filte
             if filters.get('notice_type') and filters['notice_type'].strip():
                 where_clauses.append(f"a.notice_type LIKE ${len(params)+1}")
                 params.append(f"%{filters['notice_type']}%")
+            if filters.get('status') and filters['status'].strip():
+                where_clauses.append(f"a.status = ${len(params)+1}")
+                params.append(filters['status'])
         
         if filter_ids:
             where_clauses.append(f"a.id = ANY(${len(params)+1}::text[])")
@@ -83,7 +86,10 @@ async def keyword_search(keywords: List[str], top_k: int = 10, filters: dict = N
             if filters.get('notice_type') and filters['notice_type'].strip():
                 where_clauses.append(f"a.notice_type LIKE ${len(params)+1}")
                 params.append(f"%{filters['notice_type']}%")
-        
+            if filters.get('status') and filters['status'].strip():
+                where_clauses.append(f"a.status = ${len(params)+1}")
+                params.append(filters['status'])
+
         if filter_ids:
             where_clauses.append(f"a.id = ANY(${len(params)+1}::text[])")
             params.append(filter_ids)
@@ -110,13 +116,14 @@ async def keyword_search(keywords: List[str], top_k: int = 10, filters: dict = N
 async def multi_query_hybrid_search(
     query_analysis: Dict,
     multi_queries: List[str],
-    vector_top_k: int = 7,
-    keyword_top_k: int = 3
+    vector_top_k: int = 10,
+    keyword_top_k: int = 5
 ) -> List[Dict]:
     filters = {
         'region': query_analysis.get('region', ''),
         'notice_type': query_analysis.get('notice_type', ''),
-        'category': query_analysis.get('category', '')
+        'category': query_analysis.get('category', ''),
+        'status': query_analysis.get('status', '')
     }
     
     filter_ids = None
@@ -143,7 +150,7 @@ async def multi_query_hybrid_search(
 
 
 # 4. 재순위화 (Reranking)
-async def rerank_results(query: str, search_results: List[Dict], top_k: int = 8) -> List[Dict]:
+async def rerank_results(query: str, search_results: List[Dict], top_k: int = 25) -> List[Dict]:
     """
     Cross-Encoder를 사용하여 결과의 순위를 재조정합니다.
     (Async Non-blocking 버전)
@@ -282,5 +289,46 @@ async def get_chat_logs(limit: int = 50):
     except Exception as e:
         print(f"[Warning] 로그 조회 실패: {e}")
         return []
+    finally:
+        await conn.close()
+
+
+async def get_announcement_metadata(announcement_ids: List[str]) -> List[Dict]:
+    """
+    벡터 데이터가 없는 공고의 기본 정보를 RDB에서 가져옵니다.
+    """
+    if not announcement_ids:
+        return []
+
+    conn = await asyncpg.connect(**get_db_config())
+    try:
+        sql = """
+            SELECT id, title, category, region, notice_type,
+                   posted_date, url, status
+            FROM announcements
+            WHERE id = ANY($1::text[])
+        """
+        rows = await conn.fetch(sql, announcement_ids)
+
+        results = []
+        for row in rows:
+            posted_date = row.get('posted_date')
+            announcement_date = str(posted_date) if posted_date else None
+
+            results.append({
+                'announcement_id': row['id'],
+                'announcement_title': row['title'],
+                'announcement_date': announcement_date,
+                'announcement_url': row.get('url'),
+                'announcement_status': row.get('status'),
+                'region': row['region'],
+                'notice_type': row['notice_type'],
+                'category': row['category'],
+                'merged_content': '(상세 내용이 아직 처리되지 않았습니다. 공고 링크를 참고해주세요.)',
+                'rerank_score': 0.0,
+                'num_chunks': 0
+            })
+
+        return results
     finally:
         await conn.close()

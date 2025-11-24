@@ -133,17 +133,19 @@ async def chat_service(query: str, history: List[Dict]) -> Dict:
                         context_results.append(r)
                         seen.add(r['chunk_id'])
 
-            # 일반 검색 (혹시 다른 공고일 수도 있으므로 넓게 검색)
-            general_results = await gongo.multi_query_hybrid_search(query_analysis, multi_queries)
+            # 벡터 검색 결과가 없으면 RDB에서 메타데이터 가져오기
+            merged_results = []
+            if context_results:
+                # 공고 참조 질문은 이전 공고 ID 범위 내에서만 검색 (일반 검색 제외)
+                # 재순위화
+                reranked = await gongo.rerank_results(query_analysis.get('rewritten_question', query), context_results)
 
-            # 전체 결과 병합 (중복 제거)
-            combined = context_results + [r for r in general_results if r['chunk_id'] not in seen]
-
-            # 재순위화
-            reranked = await gongo.rerank_results(query_analysis.get('rewritten_question', query), combined)
-
-            # 청크 병합
-            merged_results = await gongo.merge_chunks(reranked)
+                # 청크 병합
+                merged_results = await gongo.merge_chunks(reranked)
+            else:
+                # 벡터 데이터가 없는 경우 RDB에서 기본 정보 가져오기
+                print(f"[Log] 벡터 데이터 없음. RDB에서 메타데이터 가져옴: {prev_ids}")
+                merged_results = await gongo.get_announcement_metadata(prev_ids)
 
             # 컨텍스트 구성 및 답변 생성
             context = gongo.build_context(merged_results)
