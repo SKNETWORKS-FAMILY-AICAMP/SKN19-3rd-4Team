@@ -32,7 +32,7 @@ async def rag_process(query: str, history: List[Dict], verbose: bool = True) -> 
     context, sources = gongo.build_context(reranked)
     
     # 답변 생성
-    result = llm_handler.generate_answer(query_analysis.get('rewritten', query), context, sources)
+    result = await llm_handler.generate_answer(query_analysis.get('rewritten', query), context, sources)
     
     result['query_analysis'] = query_analysis
     return result
@@ -68,7 +68,7 @@ async def chat_service(query: str, history: List[Dict]) -> Dict:
             context, sources = gongo.build_context(reranked)
             result = llm_handler.generate_answer(query_analysis.get('rewritten', query), context, sources)
             
-            result['query_analysis'] = query_analysis
+            result = await llm_handler.generate_answer(query_analysis.get('rewritten', query), context, sources)
             return result
 
     # 일반 질문인 경우
