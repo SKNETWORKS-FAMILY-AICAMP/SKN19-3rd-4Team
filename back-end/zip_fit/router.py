@@ -47,7 +47,7 @@ async def chat_endpoint(request: ChatRequest):
         }
         user_sessions[user_id].append(new_turn)
         
-        print(f"[Debug] ✅ 저장 완료. 현재 {user_id}의 누적 대화 개수: {len(user_sessions[user_id])}")
+        print(f"[Debug] 저장 완료. 현재 {user_id}의 누적 대화 개수: {len(user_sessions[user_id])}")
         
         # 4. 응답 반환 (프론트엔드 확인용 필드 포함)
         return ChatResponse(
