@@ -1,16 +1,18 @@
 from pydantic import BaseModel, Field
-from typing import List, Dict, Optional, Any, Union
+from typing import List, Dict, Optional, Any
 
 class Message(BaseModel):
     role: str
     content: str
 
 class ChatRequest(BaseModel):
-    query: str
-    history: List[Dict[str, Any]] = Field(default_factory=list, description="이전 대화 내역 ({'query':.., 'answer':..})")
+    user_id: str = Field(..., description="사용자 식별 ID (예: 'user123')")
+    query: str = Field(..., description="사용자 질문")
+
+class ResetRequest(BaseModel):
+    user_id: str
 
 class SourceInfo(BaseModel):
-    # [수정됨] int -> str (DB에 'LH_lease_64' 같은 문자열 ID가 들어있기 때문)
     announcement_id: str
     announcement_title: str
     announcement_date: Optional[str] = None

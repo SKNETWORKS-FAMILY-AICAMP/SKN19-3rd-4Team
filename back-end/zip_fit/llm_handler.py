@@ -169,7 +169,10 @@ async def generate_answer(query: str, context: str, conversation_history: List[D
     client = get_openai_client()
     history_text = ""
     if conversation_history:
-        history_items = [f"Q: {h['question']}\nA: {h['answer'][:150]}..." for h in conversation_history[-3:]]
+        history_items = [
+            f"Q: {h.get('query', '')}\nA: {str(h.get('answer', ''))[:150]}..." 
+            for h in conversation_history[-3:]
+        ]
         history_text = "\n\n".join(history_items)
     
     system_prompt = """LH 공사의 임대/분양 공고 전문 상담사입니다.
