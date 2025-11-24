@@ -2,6 +2,10 @@
 
 **SK네트웍스 Family AI 캠프 19기 3차 프로젝트**
 
+> LLM과 RAG 기술을 활용한 공공주택 공고 기반 맞춤형 주거 정보 제공 AI 에이전트 서비스
+
+**상세 문서**: [프로젝트 산출물](./docs/00_프로젝트_산출물.md)
+
 ---
 
 ## 1. 팀 소개
@@ -9,11 +13,12 @@
 **팀명**: A.J.C
 
 **팀원**:
-- 김범섭 ([@WhatSupYap](https://github.com/WhatSupYap))
-- 김종민 ([@jongminkim-KR1](https://github.com/jongminkim-KR1))
-- 이상혁 ([@sangpiri](https://github.com/sangpiri))
-- 이인재 ([@distecter](https://github.com/distecter))
-- 오흥재 ([@vfxpedia](https://github.com/vfxpedia))
+
+| | 김범섭 | 김종민 | 이상혁 | 이인재 | 오흥재 |
+|---|---|---|---|---|---|
+| ![김범섭](https://github.com/WhatSupYap.png?size=100) | ![김종민](https://github.com/jongminkim-KR1.png?size=100) | ![이상혁](https://github.com/sangpiri.png?size=100) | ![이인재](https://github.com/distecter.png?size=100) | ![오흥재](https://github.com/vfxpedia.png?size=100) |
+| 김범섭 | 김종민 | 이상혁 | 이인재 | 오흥재 |
+| [@WhatSupYap](https://github.com/WhatSupYap) | [@jongminkim-KR1](https://github.com/jongminkim-KR1) | [@sangpiri](https://github.com/sangpiri) | [@distecter](https://github.com/distecter) | [@vfxpedia](https://github.com/vfxpedia) |
 
 ---
 
@@ -65,40 +70,46 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 | 구분 | 기술/도구 | 버전/모델명 | 용도 |
 |------|----------|------------|------|
 | **Backend** | | | |
-| | FastAPI | - | RESTful API 프레임워크 |
+| | FastAPI | 0.121.3 | RESTful API 프레임워크 |
 | | Python | 3.12 | 백엔드 개발 언어 |
 | | asyncio | - | 비동기 처리 |
-| | asyncpg | - | PostgreSQL 비동기 연결 |
-| | OpenAI Python SDK | - | OpenAI API 클라이언트 |
+| | asyncpg | 0.30.0 | PostgreSQL 비동기 연결 |
+| | OpenAI Python SDK | 1.57.2 | OpenAI API 클라이언트 |
+| | uvicorn | 0.38.0 | ASGI 서버 |
 | **Frontend** | | | |
-| | Vue | 3 | 프론트엔드 프레임워크 |
-| | Vite | - | 빌드 도구 |
-| | TypeScript | - | 타입 안전성 보장 |
-| | Pinia | - | 상태 관리 |
-| | Vue Router | - | 라우팅 |
+| | Vue | 3.5.22 | 프론트엔드 프레임워크 |
+| | Vite | 7.1.11 | 빌드 도구 |
+| | TypeScript | 5.9.0 | 타입 안전성 보장 |
+| | Pinia | 3.0.3 | 상태 관리 |
+| | Vue Router | 4.6.3 | 라우팅 |
+| | Node.js | ^20.19.0 \|\| >=22.12.0 | 런타임 환경 |
 | **데이터베이스** | | | |
 | | PostgreSQL | - | 관계형 데이터베이스 |
 | | pgvector | - | 벡터 확장 |
-| | asyncpg | - | 비동기 DB 연결 라이브러리 |
+| | asyncpg | 0.30.0 | 비동기 DB 연결 라이브러리 |
 | **AI 모델** | | | |
 | 임베딩 | BAAI/bge-m3 | - | 문서 및 질문 임베딩 생성 (1024차원) |
+| | sentence-transformers | 3.3.1 | 임베딩 모델 라이브러리 |
 | Reranker | Dongjin-kr/ko-reranker | - | 검색 결과 재순위화 (Cross-Encoder) |
 | LLM | GPT-4o-mini | OpenAI | 질문 재구성, 답변 생성, 맥락 분석 |
 | **데이터 처리** | | | |
-| | pymupdf4llm | - | PDF 텍스트 추출 |
-| | langchain-text-splitters | - | 텍스트 청킹 |
+| | pymupdf4llm | 0.0.17 | PDF 텍스트 추출 |
+| | langchain-text-splitters | 0.3.2 | 텍스트 청킹 |
 | | requests | - | HTTP 요청 |
 | | BeautifulSoup4 | - | HTML 파싱 |
-| | pandas | - | 데이터 분석 및 처리 |
+| | pandas | 2.2.3 | 데이터 분석 및 처리 |
+| | torch | >=2.6.0 | 딥러닝 프레임워크 |
+| | numpy | >=1.24.0 | 수치 연산 라이브러리 |
 | **개발 환경** | | | |
 | | Docker | - | 컨테이너화 및 배포 |
 | | pip/conda | - | 패키지 관리 |
-| | uvicorn | - | ASGI 서버 |
-| | python-dotenv | - | 환경 변수 관리 |
+| | python-dotenv | 1.0.1 | 환경 변수 관리 |
 
 ---
 
 ## 4. 시스템 아키텍처
+
+자세한 내용은 [시스템 아키텍처 문서](./docs/03_시스템_아키텍처.md)를 참조하세요.
 
 (추후 Miro를 활용하여 별도 작성 예정)
 
@@ -118,6 +129,10 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 
 ## 7. 수집한 데이터 및 전처리 요약
 
+자세한 내용은 다음 문서를 참조하세요:
+- [수집된 데이터](./docs/01_수집된_데이터.md)
+- [데이터 전처리 문서](./docs/02_데이터_전처리_문서.md)
+
 ### 데이터 수집
 
 #### LH (한국토지주택공사) 공고 데이터
@@ -126,8 +141,25 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 - **프로토타입 범위**: 서울/경기 지역 공고만 대상
 - **수집 항목**: 공고번호, 유형, 공고명, 지역, 게시일, 마감일, 상태, 조회수, 상세 URL
 - **유형 분류**:
-  - 임대: 통합공공임대, 통합공공임대(신혼희망), 국민임대, 공공임대, 영구임대, 행복주택, 행복주택(신혼희망), 장기전세, 신축다세대매입임대, 가정어린이집, 매입임대, 전세임대, 집주인임대, 6년 공공임대주택
-  - 분양: 분양주택, 공공분양(신혼희망)
+
+| 구분 | 유형 | 설명 |
+|------|------|------|
+| **임대** | 통합공공임대 | 통합된 공공 임대주택 |
+| | 통합공공임대(신혼희망) | 신혼부부 우선 공급 |
+| | 국민임대 | 국민임대주택 |
+| | 공공임대 | 공공임대주택 |
+| | 영구임대 | 영구임대주택 |
+| | 행복주택 | 행복주택 |
+| | 행복주택(신혼희망) | 신혼부부 우선 공급 |
+| | 장기전세 | 장기전세주택 |
+| | 신축다세대매입임대 | 신축 다세대 매입 임대 |
+| | 가정어린이집 | 가정어린이집 |
+| | 매입임대 | 매입임대주택 |
+| | 전세임대 | 전세임대주택 |
+| | 집주인임대 | 집주인임대주택 |
+| | 6년 공공임대주택 | 6년 공공임대주택 |
+| **분양** | 분양주택 | 분양주택 |
+| | 공공분양(신혼희망) | 신혼부부 우선 공급 |
 - **저장 형식**: CSV (lh_lease_notices_F.csv, lh_sale_notices_F.csv)
 
 #### GH (경기주택도시공사) 공고 데이터
@@ -139,27 +171,36 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 ### 데이터 전처리
 
 #### PDF 문서 처리
-- 공고 상세 페이지에서 PDF 문서 다운로드
-- PDF 텍스트 추출 및 구조화
+- **도구**: pymupdf4llm (0.0.17)
+- **처리 과정**: PDF 다운로드 → 텍스트 추출 → 마크다운 변환
+- **구조 보존**: 섹션 헤더, 테이블 구조 유지
 
 #### 텍스트 청킹 (Chunking)
+- **구현 위치**: `lab/이인재/규격/chunking.py`
 - **기반 문서**: PDF에서 추출한 텍스트를 마크다운 형식으로 변환한 문서
-- **최소 청크 크기**: 100자
-- **최적 청크 크기**: 600자
-- **최대 청크 크기**: 1200자
-- **최대 테이블 크기**: 3000자
-- **청크 오버랩**: 150자
+- **클래스**: `SmartChunker`
+- **청킹 파라미터**:
+  - 최소 청크 크기: 100자
+  - 최적 청크 크기: 600자
+  - 최대 청크 크기: 1200자
+  - 최대 테이블 크기: 3000자
+  - 청크 오버랩: 150자
 - **방법**: RecursiveCharacterTextSplitter 활용, 섹션 헤더 및 테이블 구조 보존
-- **특징**: 
-  - 문맥 보존을 위한 스마트 청킹
-  - 섹션 헤더 자동 감지 및 보존
-  - 테이블 구조 유지
-  - 의미 있는 청크만 필터링
+- **주요 기능**: 
+  - 섹션 헤더 자동 감지 (마크다운 헤더, 한글 섹션 표시)
+  - 테이블 구조 인식 및 처리
+  - 문맥 보존을 위한 오버랩 처리
+  - 의미 있는 청크 필터링 (최소 단어 수 확인)
 
 #### 임베딩 생성
-- BAAI/bge-m3 모델을 사용하여 각 청크를 1024차원 벡터로 변환
-- 정규화된 임베딩 벡터 생성
-- PostgreSQL pgvector 확장을 사용하여 벡터 저장
+- **구현 위치**: `lab/이인재/규격/vectorizer.py`
+- **모델**: BAAI/bge-m3 (sentence-transformers 3.3.1)
+- **차원**: 1024차원
+- **처리 과정**:
+  1. 각 청크 텍스트를 모델에 입력
+  2. 정규화된 임베딩 벡터 생성 (`normalize_embeddings=True`)
+  3. PostgreSQL pgvector 확장을 사용하여 벡터 저장 (`vector(1024)` 타입)
+- **메타데이터**: JSONB 형식으로 섹션 정보, 파일명, 테이블 포함 여부, 청크 길이 저장
 
 #### 용어집 (Glossary) 구축
 - 공공주택 관련 전문 용어 1,000개 이상 수집 및 정리
@@ -169,6 +210,11 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 ---
 
 ## 8. DB 연동 구현 코드
+
+자세한 내용은 [DB 연동 구현 코드 문서](./docs/05_DB_연동_구현_코드.md)를 참조하세요.
+
+### 개요
+PostgreSQL과 pgvector 확장을 활용하여 공고 메타데이터, PDF 파일 정보, 문서 청크 및 임베딩 벡터를 저장하고 검색합니다. RDB와 VectorDB의 역할을 동시에 수행하는 하이브리드 데이터베이스 구조를 채택했습니다.
 
 ### 데이터베이스 스키마
 
@@ -227,19 +273,121 @@ PostgreSQL에서 총 3개의 테이블을 사용합니다.
 - `back-end/zip_fit/gongo.py`: 벡터 검색, 키워드 검색, 하이브리드 검색, 재순위화 구현
 - `back-end/zip_fit/config.py`: 데이터베이스 연결 설정 및 RAG 파라미터 설정
 - `back-end/zip_fit/dependencies.py`: 데이터베이스 연결 및 모델 로딩 관리
+- `back-end/zip_fit/chatting.py`: RAG 챗봇 서비스 로직
+- `back-end/zip_fit/llm_handler.py`: LLM 처리 (질문 재구성, 답변 생성)
+- `back-end/zip_fit/router.py`: API 라우터 및 세션 관리
+- `back-end/zip_fit/info.py`: 통계 정보 제공
 
 #### 데이터베이스 관리
 - `lab/이인재/규격/database.py`: 데이터베이스 관리 클래스 (벡터화 진행 상황 추적, 청크 저장 등)
 
 ### 벡터 검색 구현
-- **벡터 유사도 검색**: pgvector의 cosine distance 연산자 (`<=>`) 활용
-- **하이브리드 검색**: 벡터 검색과 키워드 검색 결과 병합
-- **재순위화**: Cross-Encoder 기반 Reranker로 검색 결과 재정렬
-- **필터링**: 지역, 유형, 카테고리별 필터링 지원
+
+#### 벡터 유사도 검색
+pgvector의 cosine distance 연산자 (`<=>`)를 활용한 의미 기반 검색:
+
+```python
+# back-end/zip_fit/gongo.py
+async def vector_search(query: str, top_k: int = 15, filters: dict = None):
+    query_embedding = model.encode(query, normalize_embeddings=True)
+    # pgvector cosine distance 연산자 사용
+    sql = """
+        SELECT ..., (1 - (dc.embedding <=> $1::vector)) as similarity
+        FROM document_chunks dc
+        JOIN announcements a ON dc.announcement_id = a.id
+        ORDER BY dc.embedding <=> $1::vector
+        LIMIT $2
+    """
+```
+
+#### 하이브리드 검색
+벡터 검색과 키워드 검색 결과를 병합하여 검색 정확도 향상:
+
+```python
+# back-end/zip_fit/gongo.py
+async def multi_query_hybrid_search(query_analysis, multi_queries):
+    # 벡터 검색과 키워드 검색 병렬 수행 후 결과 병합
+    vector_results = await vector_search(...)
+    keyword_results = await keyword_search(...)
+    # 중복 제거 및 병합
+```
+
+#### 재순위화
+Cross-Encoder 기반 Reranker로 검색 결과 재정렬:
+
+```python
+# back-end/zip_fit/gongo.py
+def rerank_results(query: str, search_results: List[Dict], top_k: int = 8):
+    reranker = get_reranker()  # Dongjin-kr/ko-reranker
+    pairs = [(query, r['chunk_text']) for r in search_results]
+    scores = reranker.predict(pairs)
+    # Rerank 점수 기준 정렬
+```
+
+#### 필터링
+지역, 유형, 카테고리별 필터링 지원으로 검색 범위 최적화.
+
+### RAG 파이프라인 흐름
+
+자세한 내용은 [개발된 소프트웨어 문서](./docs/04_개발된_소프트웨어.md)를 참조하세요.
+
+RAG 시스템은 다음과 같은 단계로 사용자 질문에 대한 답변을 생성합니다:
+
+1. **질문 재구성** (`llm_handler.py`): 사용자 질문을 분석하여 지역, 유형, 카테고리 등 검색 필터 추출
+2. **멀티쿼리 생성** (`llm_handler.py`): 원본 질문을 다양한 표현으로 변환하여 검색 범위 확대
+3. **하이브리드 검색** (`gongo.py`): 벡터 검색과 키워드 검색을 병렬 수행 후 결과 병합
+4. **재순위화** (`gongo.py`): Cross-Encoder 기반 Reranker로 검색 결과 재정렬
+5. **청크 병합** (`gongo.py`): 동일 공고의 여러 청크를 문맥 순서대로 병합
+6. **컨텍스트 구성** (`gongo.py`): 검색된 공고 정보를 구조화된 형식으로 구성
+7. **답변 생성** (`llm_handler.py`): 제공된 컨텍스트를 바탕으로 GPT-4o-mini가 답변 생성
+
+### API 엔드포인트
+
+| 메서드 | 엔드포인트 | 기능 | 요청 형식 | 응답 형식 |
+|--------|-----------|------|----------|----------|
+| POST | `/api/v1/chat` | RAG 챗봇 메인 엔드포인트 | `ChatRequest` (user_id, query) | `ChatResponse` (query, answer, sources) |
+| POST | `/api/v1/session/reset` | 세션 초기화 | `ResetRequest` (user_id) | 상태 메시지 |
+| GET | `/api/v1/stats` | 대시보드 통계 조회 | - | 공고 통계 정보 |
+| GET | `/` | 헬스 체크 | - | 서비스 상태 및 설정 정보 |
+
+#### API 사용 예시
+
+**채팅 요청**:
+```json
+POST /api/v1/chat
+{
+  "user_id": "user123",
+  "query": "서울 행복주택 신청할 수 있어?"
+}
+```
+
+**채팅 응답**:
+```json
+{
+  "query": "서울 행복주택 신청할 수 있어?",
+  "answer": "네, 서울 지역 행복주택 신청이 가능합니다...",
+  "sources": [
+    {
+      "announcement_id": "LH_lease_1",
+      "announcement_title": "서울시 강남구 행복주택 모집공고",
+      "region": "서울",
+      "notice_type": "행복주택",
+      "category": "lease",
+      "rerank_score": 0.95,
+      "num_chunks": 3
+    }
+  ],
+  "metadata": {
+    "query_analysis": {...}
+  }
+}
+```
 
 ---
 
 ## 9. 테스트 계획 및 결과 보고서
+
+자세한 내용은 [테스트 계획 및 결과 보고서](./docs/06_테스트_계획_및_결과_보고서.md)를 참조하세요.
 
 ### 테스트 계획
 
@@ -317,7 +465,7 @@ conda activate zf_back
 # 필수 패키지 설치
 pip install fastapi uvicorn "pydantic[email]"
 pip install mysql-connector-python aiomysql langchain openai
-pip install sentence-transformers dotenv asyncpg
+pip install sentence-transformers python-dotenv asyncpg
 pip install pymupdf4llm langchain-text-splitters pandas torch
 ```
 
@@ -390,6 +538,7 @@ SELECT extversion FROM pg_extension WHERE extname = 'vector';
 ```bash
 psql -U your_username -d your_database -c "SELECT version();"
 psql -U your_username -d your_database -c "SELECT extversion FROM pg_extension WHERE extname = 'vector';"
+```
 
 ---
 
@@ -400,18 +549,21 @@ zip-fit-main/
 ├── back-end/              # Backend 서버 코드
 │   └── zip_fit/          # FastAPI 애플리케이션
 │       ├── main.py       # FastAPI 앱 진입점
-│       ├── router.py     # API 라우터
+│       ├── router.py     # API 라우터 및 세션 관리
 │       ├── chatting.py   # RAG 챗봇 서비스 로직
 │       ├── llm_handler.py # LLM 처리 (질문 재구성, 답변 생성)
 │       ├── gongo.py      # 벡터 검색 및 DB 연동
 │       ├── config.py     # 설정 파일
-│       └── dependencies.py # 의존성 주입
+│       ├── dependencies.py # 의존성 주입 (모델 로딩)
+│       ├── models.py     # Pydantic 모델 정의
+│       └── info.py       # 통계 정보 제공
 ├── front-end/            # Frontend 클라이언트 코드
 │   └── zf_front/        # Vue 3 애플리케이션
 │       ├── src/
-│       │   ├── views/    # 페이지 컴포넌트
+│       │   ├── views/    # 페이지 컴포넌트 (AiView, HomeView, ListView)
 │       │   ├── components/ # 재사용 컴포넌트
-│       │   └── router/   # 라우팅 설정
+│       │   ├── router/   # 라우팅 설정
+│       │   └── stores/   # Pinia 상태 관리
 │       └── package.json
 ├── crawler/              # 크롤러 코드
 ├── lab/                  # 팀원별 실험 및 개발 코드
@@ -421,6 +573,13 @@ zip-fit-main/
 │   ├── 이인재/          # 백엔드 아키텍처 구성 및 데이터베이스 관리
 │   └── 오흥재/          # 공공주택 용어집(Glossary) 구축 및 프로젝트 지원
 └── docs/                 # 프로젝트 문서
+    ├── 00_프로젝트_산출물.md
+    ├── 01_수집된_데이터.md
+    ├── 02_데이터_전처리_문서.md
+    ├── 03_시스템_아키텍처.md
+    ├── 04_개발된_소프트웨어.md
+    ├── 05_DB_연동_구현_코드.md
+    └── 06_테스트_계획_및_결과_보고서.md
 ```
 
 ---
@@ -433,7 +592,21 @@ zip-fit-main/
 
 ## 참고 자료
 
+### 공공 API
 - [LH 공고 API](https://www.data.go.kr/data/15058530/openapi.do)
 - [GH 공고 API](https://www.data.go.kr/data/15119414/fileData.do)
+
+### 기술 문서
 - [OpenAI API 문서](https://platform.openai.com/docs)
 - [pgvector 문서](https://github.com/pgvector/pgvector)
+- [FastAPI 문서](https://fastapi.tiangolo.com/)
+- [Vue 3 문서](https://vuejs.org/)
+
+### 프로젝트 문서
+- [프로젝트 산출물](./docs/00_프로젝트_산출물.md)
+- [수집된 데이터](./docs/01_수집된_데이터.md)
+- [데이터 전처리 문서](./docs/02_데이터_전처리_문서.md)
+- [시스템 아키텍처](./docs/03_시스템_아키텍처.md)
+- [개발된 소프트웨어](./docs/04_개발된_소프트웨어.md)
+- [DB 연동 구현 코드](./docs/05_DB_연동_구현_코드.md)
+- [테스트 계획 및 결과 보고서](./docs/06_테스트_계획_및_결과_보고서.md)
