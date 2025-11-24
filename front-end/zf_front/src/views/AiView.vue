@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { ref, nextTick, onMounted } from 'vue';
     import { v4 as uuidv4 } from 'uuid';
+    import { marked } from 'marked';
 
     function generateGuidLib(): string {
         return uuidv4();
@@ -20,11 +21,14 @@
         query: string;
         answer: string;
         sources: Array<{
-            announcement_id: string;
-            title: string;
+            announcement_id: string;                
+            announcement_title: string;
+            announcement_date: string;
+            announcement_url: string;
+            announcement_status: string;
             region: string;
-            score: number;
-            chunk_count: number;
+            notice_type: string;
+            category: string;
         }>;
         metadata?: Record<string, unknown>;
     }
@@ -121,10 +125,52 @@
 
             const data: ChatResponse = await response.json();
 
+            let sources_content = ""; // sources_content 변수 선언
+
+            if (data.sources && data.sources.length > 0) {
+                // 💡 HTML 문자열을 시작합니다. (답변과 소스 구분을 위한 태그 추가)
+                sources_content += '<div class="sources-in-bubble">';
+                sources_content += '<h4><i class="fa-solid fa-book-open"></i> 참고 공고</h4>';
+                sources_content += '<ul>';
+
+                for (const source of data.sources) {
+                    // 공고 상태에 따른 뱃지 클래스 결정 (CSS에서 정의)
+                    let statusClass = '';
+                    if (source.announcement_status === '접수중') {
+                        statusClass = 'status-badge-active';
+                    } else if (source.announcement_status === '접수마감') {
+                        statusClass = 'status-badge-closed';
+                    } else {
+                        statusClass = 'status-badge-default';
+                    }
+
+                    // 각 소스를 리스트 아이템으로 추가합니다. (새로운 데이터 필드 반영)
+                    sources_content += `
+                        <li class="source-item">
+                            <div class="source-title-wrap">
+                                <span class="source-title">${source.announcement_title}</span>
+                                <span class="${statusClass}">${source.announcement_status}</span>
+                            </div>
+                            <div class="source-details">
+                                <span>지역: ${source.region}</span>
+                                <span>공고일: ${source.announcement_date}</span>
+                                <a href="${source.announcement_url}" target="_blank" class="source-link">
+                                    <i class="fa-solid fa-link"></i> 공고 바로가기
+                                </a>
+                            </div>
+                        </li>
+                    `;
+                }
+                
+                sources_content += '</ul></div>';
+            }
+
+            const htmlAnswer = marked(data.answer);
+
             // 봇 응답 추가
             messages.value.push({
                 type: 'bot',
-                content: data.answer.replace(/\n/g, '<br />'),
+                content: htmlAnswer + sources_content,
                 time: getCurrentTime(),
             });
 

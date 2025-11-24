@@ -1968,7 +1968,165 @@ body {
   background-color: var(--primary);
   color: var(--white);
 }
+/* ---------------------------------------------------- */
+/* --- AI Chat Component (AiView.vue) Styles START --- */
+/* ---------------------------------------------------- */
 
+.sources-in-bubble {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    font-size: 0.9em;
+}
+
+.sources-in-bubble h4 {
+    margin-top: 5px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #1a1a1a;
+    font-size: 1.1em;
+}
+
+.sources-in-bubble ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.source-item {
+    margin-bottom: 12px;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s;
+}
+
+.source-item:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.source-title-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.source-title {
+    font-weight: 600;
+    color: #004d99;
+    line-height: 1.3;
+    flex-grow: 1;
+    padding-right: 10px;
+}
+
+.status-badge-default, .status-badge-active, .status-badge-closed {
+    font-size: 0.8em;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.status-badge-active {
+    background-color: #008000;
+    color: white;
+}
+
+.status-badge-closed {
+    background-color: #b30000;
+    color: white;
+}
+
+.status-badge-default {
+    background-color: #6c757d;
+    color: white;
+}
+
+.source-details {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.85em;
+    color: #666;
+    gap: 5px 15px;
+    border-top: 1px dotted #e9ecef;
+    padding-top: 5px;
+    margin-top: 5px;
+}
+
+.source-details span {
+    white-space: nowrap;
+}
+
+.source-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: auto;
+    transition: color 0.2s;
+}
+
+.source-link i {
+    margin-right: 4px;
+}
+
+.source-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.bubble.left {
+    white-space: normal;
+}
+
+.bubble.left p {
+    margin: 0 0 1em 0;
+    line-height: 1.6;
+}
+
+.bubble.left h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin: 1.5em 0 0.8em 0;
+    color: #004d99;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 3px;
+}
+
+.bubble.left ul, .bubble.left ol {
+    margin: 0.5em 0 1.2em 1.5em;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.bubble.left li {
+    margin-bottom: 0.4em;
+}
+
+.bubble.left strong {
+    font-weight: 700 !important; 
+    color: #333333; 
+}
+
+.bubble.left a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.bubble.left hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 1.5em 0;
+}
+
+.sources-in-bubble + p:last-child {
+    margin-bottom: 0;
+}
+/* 끝 */
 .layer-input {
   padding: 1.5rem 2.5rem;
   background-color: var(--white);
