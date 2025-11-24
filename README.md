@@ -4,6 +4,9 @@
 
 > LLM과 RAG 기술을 활용한 공공주택 공고 기반 맞춤형 주거 정보 제공 AI 에이전트 서비스
 
+
+<img width="1671" height="484" alt="home" src="https://github.com/user-attachments/assets/4f488cb9-28f7-4d72-a380-6c51172ea71e" />
+
 **상세 문서**: [프로젝트 산출물](./docs/00_프로젝트_산출물.md)
 
 ---
