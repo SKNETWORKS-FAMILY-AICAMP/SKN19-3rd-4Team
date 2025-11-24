@@ -26,8 +26,7 @@
     const messages = ref<Message[]>([
         {
             type: 'bot',
-            content: `안녕하세요 김종민님! <br />
-<br />
+            content: `
 저는 LH, SH, GH 공공주택 전문 AI 어시스턴트입니다.<br />
 <br />
 ** 저의 강점 :**<br />
