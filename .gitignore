@@ -33,3 +33,6 @@ pnpm-lock.yaml
 **/dist/
 .vite/
 *.local
+
+# model_cahce
+model_cache/
