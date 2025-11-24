@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from router import router
 from dependencies import load_models
@@ -31,6 +32,20 @@ app = FastAPI(
     description="LH 임대/분양 공고 검색을 위한 RAG 챗봇 API",
     version="1.0.0",
     lifespan=lifespan
+)
+
+# CORS 설정 추가
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",  # Vite 기본 포트
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",  # 다른 포트도 필요시 추가
+        "http://127.0.0.1:3000",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # 라우터 등록 (/api/v1/chat 경로로 접속 가능)
