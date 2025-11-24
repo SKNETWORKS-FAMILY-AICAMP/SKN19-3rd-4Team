@@ -16,6 +16,8 @@ class SourceInfo(BaseModel):
     announcement_id: str
     announcement_title: str
     announcement_date: Optional[str] = None
+    announcement_url: Optional[str] = None
+    announcement_status: Optional[str] = None
     region: str
     notice_type: str
     category: str

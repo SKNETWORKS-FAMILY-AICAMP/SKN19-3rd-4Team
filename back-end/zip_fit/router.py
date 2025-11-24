@@ -17,15 +17,24 @@ async def chat_endpoint(request: ChatRequest):
     - query: 사용자 질문
     """
     try:
+        # 빈 입력 검증
+        if not request.query or not request.query.strip():
+            return ChatResponse(
+                query="",
+                answer="질문을 입력해주세요.",
+                sources=[],
+                metadata=None
+            )
+
         user_id = request.user_id
-        
+
         # 1. 해당 유저의 세션이 없으면 빈 리스트 생성
         if user_id not in user_sessions:
             user_sessions[user_id] = []
-        
+
         # 2. 유저별 히스토리 가져오기
         current_history = user_sessions[user_id]
-        
+
         # 3. 서비스 호출
         result = await chat_service(request.query, current_history)
         

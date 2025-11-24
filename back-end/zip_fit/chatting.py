@@ -16,7 +16,7 @@ async def rag_process(query: str, history: List[Dict], verbose: bool = True) -> 
         print(f"[Log] 재구성된 질문: {query_analysis.get('rewritten_question')}")
 
     # 2. 멀티쿼리 생성
-    multi_queries = await llm_handler.generate_multi_queries(query, query_analysis, num_queries=2)
+    multi_queries = await llm_handler.generate_multi_queries(query, query_analysis, num_queries=1)
     if verbose:
         print(f"[Log] 생성된 쿼리들: {multi_queries}")
 
@@ -62,11 +62,35 @@ async def chat_service(query: str, history: List[Dict]) -> Dict:
     # 1. 맥락 분석
     context_analysis = await llm_handler.analyze_context(query, history)
     is_context = context_analysis.get('is_context_question', False)
-    
-    # 2. 맥락 질문인 경우
-    if is_context and history:
-        print(f"[Log] 맥락 질문 감지: {context_analysis.get('reason')}")
-        
+    context_type = context_analysis.get('context_type', 'new_question')
+
+    # 2-1. 순수 대화 맥락 질문 (검색 불필요)
+    if context_type == 'meta_conversation' and history:
+        print(f"[Log] 대화 맥락 질문 감지: {context_analysis.get('reason')}")
+
+        # 이전 대화 요약 컨텍스트 구성
+        history_context = "\n\n".join([
+            f"**질문 {i+1}**: {h.get('query', '')}\n**답변**: {h.get('answer', '')[:300]}..."
+            for i, h in enumerate(history[-5:])
+        ])
+
+        answer = await llm_handler.generate_answer(
+            query,
+            f"이전 대화 내역:\n{history_context}",
+            history
+        )
+
+        return {
+            'query': query,
+            'answer': answer,
+            'sources': [],
+            'metadata': {'context_type': 'meta_conversation'}
+        }
+
+    # 2-2. 공고 참조 질문인 경우
+    if is_context and context_type == 'announcement_reference' and history:
+        print(f"[Log] 공고 참조 질문 감지: {context_analysis.get('reason')}")
+
         # 이전 대화에서 언급된 공고 ID 추출
         prev_ids = []
         referenced_indices = context_analysis.get('referenced_announcement_indices', [0])
@@ -92,7 +116,7 @@ async def chat_service(query: str, history: List[Dict]) -> Dict:
             query_analysis = await llm_handler.rewrite_query(query, history)
 
             # 멀티쿼리 생성
-            multi_queries = await llm_handler.generate_multi_queries(query, query_analysis, num_queries=2)
+            multi_queries = await llm_handler.generate_multi_queries(query, query_analysis, num_queries=1)
 
             # 우선 검색 (이전 공고 ID 범위 내에서 멀티쿼리 검색)
             context_tasks = []

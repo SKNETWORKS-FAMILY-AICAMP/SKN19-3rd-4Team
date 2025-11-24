@@ -40,7 +40,7 @@ async def vector_search(query: str, top_k: int = 15, filters: dict = None, filte
         
         sql = f"""
             SELECT dc.id as chunk_id, dc.announcement_id, a.title, a.category, a.region, a.notice_type,
-                   a.posted_date, dc.chunk_text, dc.chunk_index, dc.metadata, 
+                   a.posted_date, a.url, a.status, dc.chunk_text, dc.chunk_index, dc.metadata,
                    (1 - (dc.embedding <=> $1::vector)) as similarity
             FROM document_chunks dc
             JOIN announcements a ON dc.announcement_id = a.id
@@ -93,7 +93,7 @@ async def keyword_search(keywords: List[str], top_k: int = 10, filters: dict = N
         
         sql = f"""
             SELECT DISTINCT ON (dc.id) dc.id as chunk_id, dc.announcement_id, a.title, a.category, a.region,
-                   a.notice_type, a.posted_date, dc.chunk_text, dc.chunk_index, dc.metadata
+                   a.notice_type, a.posted_date, a.url, a.status, dc.chunk_text, dc.chunk_index, dc.metadata
             FROM document_chunks dc
             JOIN announcements a ON dc.announcement_id = a.id
             WHERE ({keyword_sql}) {where_sql}
@@ -110,8 +110,8 @@ async def keyword_search(keywords: List[str], top_k: int = 10, filters: dict = N
 async def multi_query_hybrid_search(
     query_analysis: Dict,
     multi_queries: List[str],
-    vector_top_k: int = 10,
-    keyword_top_k: int = 5
+    vector_top_k: int = 7,
+    keyword_top_k: int = 3
 ) -> List[Dict]:
     filters = {
         'region': query_analysis.get('region', ''),
@@ -202,6 +202,8 @@ async def merge_chunks(chunks: List[Dict]) -> List[Dict]:
             'announcement_id': ann_id,
             'announcement_title': ann_chunks[0]['title'],
             'announcement_date': announcement_date,
+            'announcement_url': ann_chunks[0].get('url'),
+            'announcement_status': ann_chunks[0].get('status'),
             'region': ann_chunks[0]['region'],
             'notice_type': ann_chunks[0]['notice_type'],
             'category': ann_chunks[0]['category'],
@@ -221,7 +223,8 @@ def build_context(merged_results: List[Dict]) -> str:
     context_parts = []
     for i, result in enumerate(merged_results, 1):
         category_name = "임대" if result['category'] == 'lease' else "분양"
-        
+        url = result.get('announcement_url', '')
+
         context_parts.append(f"""━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 문서 {i}: {result['announcement_title']}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -231,6 +234,7 @@ def build_context(merged_results: List[Dict]) -> str:
 - 지역: {result['region']}
 - 유형: {result['notice_type'] or 'N/A'}
 - 관련도: {result['rerank_score']:.3f}
+- 공고 URL: {url if url else 'URL 정보 없음'}
 
 [문서 내용]
 {result['merged_content']}""")
