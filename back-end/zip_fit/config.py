@@ -11,11 +11,11 @@ PROJECT_ROOT = CURRENT_DIR.parent.parent.parent
 PDF_BASE_PATH = PROJECT_ROOT
 
 # 3. DB & API 설정 (기본값 제거, .env 필수)
-HOST = os.getenv('HOST')
-PORT = int(os.getenv('PORT'))
-USER = os.getenv('USER')
-PASSWORD = os.getenv('PASSWORD')
-DATABASE = os.getenv('DATABASE')
+HOST = os.getenv('DB_HOST')
+PORT = int(os.getenv('DB_PORT'))
+USER = os.getenv('DB_USER')
+PASSWORD = os.getenv('DB_PASSWORD')
+DATABASE = os.getenv('DB_DATABASE')
 
 # API 키
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
