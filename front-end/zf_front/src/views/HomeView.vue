@@ -1,64 +1,68 @@
 <script setup lang="ts">
-// 홈 뷰에 필요한 상태(data)나 메서드(methods)가 있다면 여기에 정의합니다.
-// 현재는 정적 페이지 구성이므로 비워둡니다.
+  // 홈 뷰에 필요한 상태(data)나 메서드(methods)가 있다면 여기에 정의합니다.
+  // 현재는 정적 페이지 구성이므로 비워둡니다.
 
-import { ref, onMounted } from 'vue' // ref와 onMounted 훅 임포트
-import { useRouter } from 'vue-router'
+  import { ref, onMounted } from 'vue' // ref와 onMounted 훅 임포트
+  import { useRouter } from 'vue-router'
 
-const router = useRouter()
+  const router = useRouter()
 
-// 'AI' 상담 시작하기 버튼 클릭 핸들러
-const startAiConsult = () => {
-  // /ai 경로로 이동합니다.
-  router.push('/ai')
-}
-
-// 공고 둘러보기 버튼 클릭 핸들러
-const viewNotices = () => {
-  // /list 경로로 이동합니다.
-  router.push('/list')
-}
-
-interface DashBoardInfo {  
-  CNT_ALL: number;
-  CNT_NOTE_ING: number;
-  CNT_APP_ING: number;
-  CNT_ELSE: number;
-}
-
-// API 결과를 저장할 반응형 변수. 초기값은 빈 객체 또는 기본값으로 설정
-const dashboardData = ref<DashBoardInfo>({
-  CNT_ALL: 0,
-  CNT_NOTE_ING: 0,
-  CNT_APP_ING: 0,
-  CNT_ELSE: 0,
-});
-
-const getDashBoard = async () => {
-  try {
-    const response = await fetch('http://127.0.0.1:8000/api/v1/stats', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });
-
-    if (!response.ok) {
-        throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
-    }
-
-    const return_value: DashBoardInfo = await response.json();
-    
-    // 💡 API 결과를 반응형 변수(.value)에 할당하여 View 업데이트
-    dashboardData.value = return_value;
-
-    console.log('대시보드 데이터 로드 성공:', dashboardData.value);
-
-  } catch (error) {
-    console.error('API 호출 오류:', error);
+  // 'AI' 상담 시작하기 버튼 클릭 핸들러
+  const startAiConsult = () => {
+    // /ai 경로로 이동합니다.
+    router.push('/ai')
   }
-}
 
+  // 공고 둘러보기 버튼 클릭 핸들러
+  const viewNotices = () => {
+    // /list 경로로 이동합니다.
+    router.push('/list')
+  }
+
+  interface DashBoardInfo {  
+    CNT_ALL: number;
+    CNT_NOTE_ING: number;
+    CNT_APP_ING: number;
+    CNT_ELSE: number;
+  }
+
+  // API 결과를 저장할 반응형 변수. 초기값은 빈 객체 또는 기본값으로 설정
+  const dashboardData = ref<DashBoardInfo>({
+    CNT_ALL: 0,
+    CNT_NOTE_ING: 0,
+    CNT_APP_ING: 0,
+    CNT_ELSE: 0,
+  });
+
+  const getDashBoard = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/v1/stats', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          }
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
+      }
+
+      const return_value: DashBoardInfo = await response.json();
+      
+      // 💡 API 결과를 반응형 변수(.value)에 할당하여 View 업데이트
+      dashboardData.value = return_value;
+
+      console.log('대시보드 데이터 로드 성공:', dashboardData.value);
+
+    } catch (error) {
+      console.error('API 호출 오류:', error);
+    }
+  }
+
+// 💡 컴포넌트가 마운트된 후 데이터 로드 함수 호출
+onMounted(() => {
+    getDashBoard()
+});
 
 
 // 첨부된 HTML 파일에 있던 간단한 JavaScript 함수는 Vue 방식으로 처리하는 것이 좋습니다.

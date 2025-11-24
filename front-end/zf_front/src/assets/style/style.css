@@ -1179,7 +1179,7 @@ body {
   background-position: calc(100% - 0.75rem) center;
   border: 0.0625rem solid var(--gray400);
   border-radius: 0.5rem;
-  height: 3.5rem;
+  height: 2.5rem;
   padding: 0rem 0.75rem;
 }
 
@@ -2175,7 +2175,7 @@ body {
 }
 /* 끝 */
 .layer-input {
-  padding: 1.5rem 2.5rem;
+  padding: 1.0rem 1.0rem;
   background-color: var(--white);
 }
 .layer-input .input {
@@ -2187,11 +2187,11 @@ body {
 }
 .layer-input .input .ui-input {
   width: 100%;
-  font-size: 1.125rem;
+  font-size: 1.0rem;
   background-color: var(--gray100);
 }
 .layer-input .input .ui-btn {
-  min-width: 6.25rem;
+  min-width: 3rem;
 }
 .layer-input .info {
   margin-top: 0.75rem;

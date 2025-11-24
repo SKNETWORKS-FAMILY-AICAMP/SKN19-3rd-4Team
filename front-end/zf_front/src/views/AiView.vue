@@ -278,11 +278,11 @@
                         <i class="fa-regular fa-paper-plane"></i>
                     </button>
                 </div>
-                <div class="info">
+                <!-- <div class="info">
                     <i class="fa-solid fa-bolt txt-orange300 size-fz300"></i>
                     <strong class="sb txt-blue600">AI</strong> 가 실제 공고 문서를
                     분석하여 답변합니다. 정확한 정보는 공식 사이트를 확인해주세요.
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
@@ -290,4 +290,8 @@
 
 <style scoped>
     /* AiView.vue에 특화된 스타일 */
+    .layer-input .input .ui-btn {
+        padding: 0.5rem;  /* 8px로 줄임 (원래 16px) */
+        min-width: 3rem;
+    }
 </style>

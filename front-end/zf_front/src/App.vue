@@ -46,14 +46,15 @@ import { RouterLink, RouterView } from 'vue-router'
               </span>
             </RouterLink>
           </li>
-          <li>
+          <!--  -->
+          <!-- <li>
             <RouterLink to="/list" class="ui-btn" active-class="active">
               <span class="has-icon">
                 <i class="fa-regular fa-file"></i>
                 <span class="txt">공고 목록</span>
               </span>
             </RouterLink>
-          </li>
+          </li> -->
         </ul>
       </nav>
     </div>
