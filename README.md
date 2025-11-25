@@ -239,9 +239,9 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
 <thead>
 <tr style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;">
-<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 15%;">구분</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 20%;">구분</th>
 <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 40%;">프로토타입 (현재 구현)</th>
-<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">최종 목표</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 40%;">최종 목표</th>
 </tr>
 </thead>
 <tbody>
@@ -269,9 +269,9 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 <thead>
 <tr style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;">
 <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 10%;">기능 ID</th>
-<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 35%;">기능명</th>
-<th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd; width: 25%;">프로토타입 상태</th>
-<th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd; width: 15%;">우선순위</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 40%;">기능명</th>
+<th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd; width: 30%;">프로토타입 상태</th>
+<th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd; width: 20%;">우선순위</th>
 </tr>
 </thead>
 <tbody>
@@ -355,9 +355,9 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
 <thead>
 <tr style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;">
-<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 20%;">항목</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 25%;">항목</th>
 <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 50%;">요구사항</th>
-<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 30%;">현재 상태</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 25%;">현재 상태</th>
 </tr>
 </thead>
 <tbody>
@@ -395,7 +395,7 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 <thead>
 <tr style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;">
 <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 25%;">제약사항</th>
-<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">설명</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 75%;">설명</th>
 </tr>
 </thead>
 <tbody>
