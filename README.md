@@ -97,7 +97,7 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 | | 데이터 분석 | <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/> | 2.2.3 | 데이터 분석 및 처리 |
 | | 딥러닝 | <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/> | >=2.6.0 | 딥러닝 프레임워크 |
 | | 수치 연산 | <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white"/> | >=1.24.0 | 수치 연산 라이브러리 |
-| **개발 환경** | 컨테이너 | <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/> | - | 컨테이너화 및 배포 |
+| **개발 환경** | 컨테이너 | <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/> | 4.41.0.210443 | 컨테이너화 및 배포 |
 | | 패키지 관리 | <img src="https://img.shields.io/badge/Pip%2FConda-010101?style=for-the-badge&logo=anaconda&logoColor=white"/> | - | 패키지 관리 |
 | | 환경 변수 | <img src="https://img.shields.io/badge/python--dotenv-3776AB?style=for-the-badge&logo=python&logoColor=white"/> | 1.0.1 | 환경 변수 관리 |
 
