@@ -5,7 +5,7 @@
 > LLM과 RAG 기술을 활용한 공공주택 공고 기반 맞춤형 주거 정보 제공 AI 에이전트 서비스
 
 
-<img width="1671" height="484" alt="home" src="https://github.com/user-attachments/assets/4f488cb9-28f7-4d72-a380-6c51172ea71e" />
+<img width="1671" alt="home" src="https://github.com/user-attachments/assets/4f488cb9-28f7-4d72-a380-6c51172ea71e" />
 
 **상세 문서**: [프로젝트 산출물](./docs/00_프로젝트_산출물.md)
 
@@ -17,10 +17,11 @@
 
 **팀원**:
 
-| <img src="https://github.com/user-attachments/assets/4fef2723-f298-406e-8e18-dfe06c61c174" width="200" height="200" /> | <img src="https://github.com/user-attachments/assets/f58d5e52-fa84-4745-affd-472ac458912b" width="200" height="200" /> | <img src="https://github.com/user-attachments/assets/86647741-f153-49da-89c2-d2922872665d" width="200" height="200" /> | <img src="https://github.com/user-attachments/assets/b7972497-13b2-458a-a013-4c9568428645" width="200" height="200" /> | <img src="https://github.com/user-attachments/assets/b3c747f8-4497-4136-bc4a-426c2b16c808" width="200" height="200" /> |
-|---|---|---|---|---|
-| 김범섭 | 김종민 | 오흥재 | 이상혁 | 이인재 |
-| [@WhatSupYap](https://github.com/WhatSupYap) | [@jongminkim-KR1](https://github.com/jongminkim-KR1) | [@vfxpedia](https://github.com/vfxpedia) | [@sangpiri](https://github.com/sangpiri) | [@distecter](https://github.com/distecter) |
+| <img src="https://github.com/user-attachments/assets/4fef2723-f298-406e-8e18-dfe06c61c174" width="200" /> | <img src="https://github.com/user-attachments/assets/f58d5e52-fa84-4745-affd-472ac458912b" width="200" /> | <img src="https://github.com/user-attachments/assets/86647741-f153-49da-89c2-d2922872665d" width="200" /> | <img src="https://github.com/user-attachments/assets/b7972497-13b2-458a-a013-4c9568428645" width="200" /> | <img src="https://github.com/user-attachments/assets/b3c747f8-4497-4136-bc4a-426c2b16c808" width="200" /> |
+|:---:|:---:|:---:|:---:|:---:|
+| **김범섭** | **김종민** | **오흥재** | **이상혁** | **이인재** |
+| [![GitHub](https://img.shields.io/badge/GitHub-WhatSupYap-blue?logo=github)](https://github.com/WhatSupYap) | [![GitHub](https://img.shields.io/badge/GitHub-jongminkim--KR1-blue?logo=github)](https://github.com/jongminkim-KR1) | [![GitHub](https://img.shields.io/badge/GitHub-vfxpedia-blue?logo=github)](https://github.com/vfxpedia) | [![GitHub](https://img.shields.io/badge/GitHub-sangpiri-blue?logo=github)](https://github.com/sangpiri) | [![GitHub](https://img.shields.io/badge/GitHub-distecter-blue?logo=github)](https://github.com/distecter) |
+
 
 ---
 
@@ -92,7 +93,7 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 | | LLM | <img src="https://img.shields.io/badge/GPT--4o--mini-000000?style=for-the-badge&logo=openai&logoColor=white"/> | OpenAI | 질문 재구성, 답변 생성, 맥락 분석 |
 | **데이터 처리** | PDF 추출 | <img src="https://img.shields.io/badge/PyMuPDF4LLM-B31B1B?style=for-the-badge&logo=pdf&logoColor=white"/> | 0.0.17 | PDF 텍스트 추출 |
 | | 청킹 | <img src="https://img.shields.io/badge/Langchain--Splitter-181818?style=for-the-badge&logo=langchain&logoColor=white"/> | 0.3.2 | 텍스트 청킹 |
-| | HTTP | <img src="https://img.shields.io/badge/requests-010101?style=for-the-badge&logo=html5&logoColor=white"/> | - | HTTP 요청 |
+| | HTTP | <img src="https://img.shields.io/badge/requests-010101?style=for-the-badge&logo=html5&logoColor=white"/> | 2.32.5 | HTTP 요청 |
 | | 파싱 | <img src="https://img.shields.io/badge/BeautifulSoup4-010101?style=for-the-badge&logo=html5&logoColor=white"/> | 4.14.2 | HTML 파싱 |
 | | 데이터 분석 | <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/> | 2.2.3 | 데이터 분석 및 처리 |
 | | 딥러닝 | <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/> | >=2.6.0 | 딥러닝 프레임워크 |
@@ -107,6 +108,10 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 
 자세한 내용은 [시스템 아키텍처 문서](./docs/03_시스템_아키텍처.md)를 참조하세요.
 
+### 4-1 데이터 수집봇 아키텍쳐 (현재 미완성)
+![Image](https://github.com/user-attachments/assets/c8e123c2-884c-4637-94fb-64fb0e2da0e8)
+
+### 4-2 RAG 시스템 아키텍쳐
 ![SKN_3차_ZIPFIT - 시스템 아키텍쳐](https://github.com/user-attachments/assets/91d8e81f-7320-4d7e-87f7-4fd3dcfe049a)
 
 ---
@@ -232,7 +237,198 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
 
 ## 6. 요구사항 명세서
 
-(팀 논의 후 작성 예정)
+자세한 내용은 [요구사항 명세서 문서](./docs/08_요구사항_명세서.md)를 참조하세요.
+
+### 프로젝트 범위
+
+<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+<thead>
+<tr style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;">
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 20%;">구분</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 40%;">프로토타입 (현재 구현)</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 40%;">최종 목표</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>데이터</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">LH 공고 중 서울/경기 지역만</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">전국 지역, GH/SH 공고 포함</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>핵심 기능</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">AI 상담 → 공고 비교/추천 → 신청 안내</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">AI 상담 → 자격 진단 → 공고 비교/추천 → 신청 안내 → 계약 지원 → 대출 정보 제공</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>제외 기능</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">자격 진단, 계약 지원, 대출 정보 제공</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">-</td>
+</tr>
+</tbody>
+</table>
+
+### 기능 요구사항 요약
+
+<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+<thead>
+<tr style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;">
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 10%;">기능 ID</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 40%;">기능명</th>
+<th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd; width: 30%;">프로토타입 상태</th>
+<th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd; width: 20%;">우선순위</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-001</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">AI 상담 (대화형 인터페이스)</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">✅ 구현 완료</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">높음</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-002</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">질문 재구성 및 분석</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">✅ 구현 완료</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">높음</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-003</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">RAG 기반 문서 검색</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">✅ 구현 완료</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">높음</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-004</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">공고 비교 및 추천</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">✅ 구현 완료</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">높음</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-005</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">신청 안내</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">✅ 구현 완료</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">높음</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-006</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">자격 진단</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">❌ 미구현 (향후 확장)</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">중간</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-007</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">계약 지원</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">❌ 미구현 (향후 확장)</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">낮음</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-008</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">대출 정보 제공</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">❌ 미구현 (향후 확장)</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">중간</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-009</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">용어 설명 (Glossary)</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">✅ 구현 완료</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">중간</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-010</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">세션 관리</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">✅ 구현 완료</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">높음</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-011</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">공고 통계 대시보드</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">✅ 구현 완료</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">중간</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">FR-012</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">공고 목록 조회</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">⚠️ 구조만 구현</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">중간</td>
+</tr>
+</tbody>
+</table>
+
+### 비기능 요구사항 요약
+
+<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+<thead>
+<tr style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;">
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 25%;">항목</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 50%;">요구사항</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 25%;">현재 상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>응답 시간</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">평균 3초 이내</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">측정 필요</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>동시 접속자</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">최소 10명 동시 처리</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">✅ 지원 (비동기 처리)</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>확장성</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">Stateless API 설계</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">✅ 지원</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>보안</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">입력 검증, CORS 설정, API 키 관리</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">✅ 구현 완료</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>호환성</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">최신 브라우저 지원, Python 3.12, Node.js ^20.19.0</td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">✅ 지원</td>
+</tr>
+</tbody>
+</table>
+
+### 주요 제약사항
+
+<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+<thead>
+<tr style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;">
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 25%;">제약사항</th>
+<th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd; width: 75%;">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>데이터 범위</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">프로토타입은 LH 서울/경기 지역만 대상</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>LLM API 비용</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">OpenAI API 사용으로 인한 비용 발생</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>세션 저장</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">인메모리 저장으로 서버 재시작 시 데이터 손실 가능</td>
+</tr>
+<tr>
+<td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>공고 업데이트</strong></td>
+<td style="padding: 10px; border-bottom: 1px solid #eee;">수동 크롤링으로 실시간 업데이트 어려움</td>
+</tr>
+</tbody>
+</table>
+
+### 향후 확장 계획
+
+- **Phase 2**: 자격 진단, GH/SH 공고 통합, 공고 목록 완성
+- **Phase 3**: 대출 정보 제공, 계약 지원, 알림 기능
+
+**상세 내용**: [요구사항 명세서 문서](./docs/08_요구사항_명세서.md)
 
 ---
 
@@ -498,26 +694,6 @@ POST /api/v1/chat
 
 자세한 내용은 [테스트 계획 및 결과 보고서](./docs/06_테스트_계획_및_결과_보고서.md)를 참조하세요.
 
-### 테스트 계획
-
-#### 기능 테스트
-- [ ] RAG 파이프라인 테스트
-- [ ] 벡터 검색 정확도 테스트
-- [ ] 세션 관리 테스트
-- [ ] API 엔드포인트 테스트
-
-#### 성능 테스트
-- [ ] 응답 시간 측정
-- [ ] 동시 접속자 처리 테스트
-- [ ] 벡터 검색 성능 테스트
-
-#### 사용자 테스트
-- [ ] 실제 사용자 시나리오 테스트
-- [ ] 답변 정확도 평가
-
-### 테스트 결과
-(추후 작성 예정)
-
 ---
 
 ## 10. 진행 과정 중 프로그램 개선 노력
@@ -548,13 +724,17 @@ POST /api/v1/chat
 
 ---
 
-## 11. 수행 결과 (테스트/시연 페이지)
+## 11. 수행 결과
 
-### 시연 페이지
-(추후 작성 예정)
+**시연 예시**
 
-### 주요 기능 시연
-(추후 작성 예정)
+<img src="https://github.com/user-attachments/assets/d20f984c-50ca-4d69-95a6-dd345690f931" width="1200" />
+
+**핵심 기능 설명**
+1. **맥락 인식**: "그 공고", "거기" 등의 지시어를 이해하고 이전 대화에서 언급된 공고를 자동으로 참조
+2. **자연스러운 대화 흐름**: 사용자가 매번 공고명을 명시하지 않아도 대화가 이어짐
+3. **정확한 정보 제공**: RAG 파이프라인을 통해 공고문의 정확한 내용을 기반으로 답변 생성
+4. **환각 방지**: 공고문에 없는 내용은 추측하지 않고, 필요시 "공고문에서 확인되지 않습니다"라고 명시
 
 ---
 
@@ -562,11 +742,11 @@ POST /api/v1/chat
 
 | 팀원 | 역할 | 한 줄 회고 |
 |------|------|-----------|
-| 김범섭 | 시스템 아키텍처 설계, 프로젝트 총괄, 프론트엔드 개발 | (작성 예정) |
-| 김종민 | LLM 파이프라인 구성 (RAG, 임베딩, 청킹 등) | (작성 예정) |
-| 이상혁 | 데이터 수집 및 크롤링, RAG 파이프라인 구성, 프롬프팅 설계 | (작성 예정) |
+| 김범섭 | 시스템 아키텍처 설계, 프로젝트 총괄, 프론트엔드 개발 | 챗봇 시스템의 안정성을 위해 서버와 분리된 비동기 배치 데이터 수집 봇 아키텍처를 설계했으나, 구조 설계에 시간을 많이 할애하여 개인 개발 시간과 LangChain 등 신기술 도입이 부족했습니다. 그럼에도 기존 백엔드 지식으로 전체 시스템을 설계한 점은 만족스러웠고, 동료들의 RAG 파이프라인(질의 재구성 등) 설계는 인상적이었습니다. 다음 배포 프로젝트에서는 부족했던 부분을 보강하며 빠르게 진행할 계획입니다. |
+| 김종민 | LLM 파이프라인 구성 (RAG, 임베딩, 청킹 등) | PostgreSQL+pgvector를 활용한 벡터 DB 구축, 질문 재구성→멀티쿼리→하이브리드 검색→리랭킹→청크 병합으로 이어지는 7단계 RAG 파이프라인 설계 및 구현, 한국어 Cross-Encoder 리랭커 도입으로 검색 정확도 개선, 맥락 기반 대화 시스템 구현을 통해 실전 RAG 시스템의 전체 흐름을 경험했습니다. |
+| 오흥재 | 공공주택 용어집(Glossary) 구축 및 프로젝트 지원 | 이번 프로젝트에서 LLM과 RAG를 활용한 전체 프로세스에 대해서 파악해서 프로젝트를 진행할 수 있어서 의미 있는 시간이었다. 다만 마찬가지로 데이터를 수집하고 어떻게 청킹을 하느냐, 임베딩을 하느냐에 따라서 LLM이 해당 데이터를 파악해서 호출 결과를 도출하는데 있어서 더욱 더 설계가 중요하다고 생각했다. 그리고 기존 배포되어있는 임베딩 모델, reranker 모델 등 새로운 파이프라인을 통해서 결과를 도출하는데 있어서 데이터 가공 후처리가 중요함을 느끼게 되었다. 마지막으로 프롬프팅을 통해서 사용자가 원하는 답변을 제공하는데 있어서 많이 고민하는 시간이었으며, 무엇보다 정확하고 빠른 답변을 제공하기 위해서는 어떤 부분을 더 다음어야하는지 회고할 수 있는 경험이었다. |
+| 이상혁 | 데이터 수집 및 크롤링, RAG 파이프라인 구성, 프롬프팅 설계 | 대량의 공고를 크롤링하는 것은 문제가 없었으나, 공고에 첨부된 대량의 첨부 파일을 모두 다운로드하는 것에 문제가 있었다. 홈페이지의 공고 첨부파일 다운로드는 자바스크립트로 동적으로 생성된 요청을 통해 이루어지는데, Selenium으로 다운로드 버튼을 클릭할 경우 브라우저 다운로드 정책 또는 헤더·세션 처리 문제로 인해 파일이 제대로 받아지지 않는 경우가 발생했다. 그래서 다른 방식을 시도했는데, BeautifulSoup + Requests 방식은 JS 이벤트 흐름을 분석해 실제 다운로드에 사용되는 요청 URL과 파라미터를 직접 구성하여 서버에 HTTP 요청을 보낸 것이기 때문에, 브라우저 정책의 영향을 받지 않고 안정적으로 대량의 파일을 다운로드할 수 있었다. |
 | 이인재 | 백엔드 아키텍처 구성 및 데이터베이스 관리 | (작성 예정) |
-| 오흥재 | 공공주택 용어집(Glossary) 구축 및 프로젝트 지원 | (작성 예정) |
 
 ---
 
@@ -735,3 +915,4 @@ zip-fit-main/
 - [DB 연동 구현 코드](./docs/05_DB_연동_구현_코드.md)
 - [테스트 계획 및 결과 보고서](./docs/06_테스트_계획_및_결과_보고서.md)
 - [진행 과정 중 프로그램 개선 노력](./docs/07_진행_과정_중_프로그램_개선_노력.md)
+- [요구사항 명세서](./docs/08_요구사항_명세서.md)
