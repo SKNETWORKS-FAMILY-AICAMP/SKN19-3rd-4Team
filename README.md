@@ -144,7 +144,7 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
             <td style="background-color: #fff9c4; padding: 6px;">📊 데이터</td>
             <td style="text-align: left; padding: 6px;">📄 데이터 조사</td>
             <td>이상혁, 오흥재, 이인재</td>
-            <td>2025년 11월 18일 → 11월 19일</td>
+            <td>2025년 11월 15일 → 11월 16일</td>
         </tr>
         <tr>
             <td style="background-color: #fff9c4; padding: 6px;">📊 데이터</td>
@@ -162,7 +162,7 @@ ZIPFIT은 LH(한국토지주택공사), SH(서울주택도시공사), GH(경기�
             <td style="background-color: #ffccbc; padding: 6px;">🗄️ DB설계</td>
             <td style="text-align: left; padding: 6px;">📄 전처리 및 벡터DB 구축</td>
             <td>김종민</td>
-            <td>2025년 11월 19일 → 11월 20일</td>
+            <td>2025년 11월 18일 → 11월 20일</td>
         </tr>
         <tr>
             <td style="background-color: #ffccbc; padding: 6px;">🗄️ DB설계</td>
